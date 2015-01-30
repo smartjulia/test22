@@ -1,0 +1,36 @@
+@font-face {
+  font-family: OpenSansSemibold;
+  src: url('../fonts/OpenSans/opensans-semibold-webfont.eot');
+  src: local('☺'),
+  url('../fonts/OpenSans/opensans-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/OpenSans/opensans-semibold-webfont.woff') format('woff'),
+  url('../fonts/OpenSans/opensans-semibold-webfont.ttf') format('truetype'),
+  url('../fonts/OpenSans/opensans-semibold-webfont.svg#OpenSansSemibold') format('svg');
+}
+@font-face {
+  font-family: OpenSans;
+  src: url('../fonts/OpenSans/opensans-regular-webfont.eot');
+  src: local('☺'),
+ url('../fonts/OpenSans/opensans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+ url('../fonts/OpenSans/opensans-regular-webfont.woff') format('woff'),
+ url('../fonts/OpenSans/opensans-regular-webfont.ttf') format('truetype'),
+ url('../fonts/OpenSans/opensans-regular-webfont.svg#OpenSans') format('svg');
+}
+@font-face {
+  font-family: OpenSansBold;
+  src: url('../fonts/OpenSans/opensans-bold-webfont.eot');
+  src: local('☺'),
+  url('../fonts/OpenSans/opensans-bold-webfont.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/OpenSans/opensans-bold-webfont.woff') format('woff'),
+  url('../fonts/OpenSans/opensans-bold-webfont.ttf') format('truetype'),
+  url('../fonts/OpenSans/opensans-bold-webfont.svg#OpenSansBold') format('svg');
+}
+@font-face {
+    font-family: OpenSansLight;
+    src: url('../fonts/OpenSans/opensans-light-webfont.eot');
+    src: local('☺'),
+    url('../fonts/OpenSans/opensans-light-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/OpenSans/opensans-light-webfont.woff') format('woff'),
+    url('../fonts/OpenSans/opensans-light-webfont.ttf') format('truetype'),
+    url('../fonts/OpenSans/opensans-light-webfont.svg#OpenSansBold') format('svg');
+}

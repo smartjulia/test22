@@ -13,12 +13,19 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $firstName;
-	public $lastName;
-	public $dateB;
-	public $countryResidence;
-	public $countryCitizenship;
-	public $password;
-	//public $password;
+    public $lastName;
+    public $dateB;
+    public $countryResidence;
+    public $countryCitizenship;
+    public $password;
+    public $phone;
+    public $company;
+    public $adress1;
+    public $adress2;
+    public $city;
+    public $state;
+    public $zip_code;
+    //public $password;
 
     /**
      * @inheritdoc
@@ -26,7 +33,7 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            ['username', 'required']
+           
         ];
     }
 
