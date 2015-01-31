@@ -59,13 +59,13 @@ AppAsset::register($this);
             NavBar::end();*/
         ?>
 
-        <div class="container">
+        
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
         <?= $content ?>
-        </div>
+        
  
 
     
@@ -77,7 +77,7 @@ AppAsset::register($this);
         </div>
     </footer>-->
 	<div class="registration-page-footer">
-    <div class="copyrights pull-left">Copyright &copy; Ebanq 2014. All Rights reserved.</div>
+    <div class="copyrights pull-left">Copyright &copy; Ebanq <?= date('Y') ?>. All Rights reserved.</div>
     <div class="site-about pull-right">Ebanq.com - The Online Banking Software Solution.</div>
     </div>
 

@@ -24,8 +24,11 @@ class SignupForm extends Model
     public $adress2;
     public $city;
     public $state;
-    public $zip_code;
-    //public $password;
+    public $zipCode;
+	public $emailConfirm;
+    public $userPassportNumber;
+    public $verifyCode;
+    
 
     /**
      * @inheritdoc
@@ -33,7 +36,35 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-           
+
+           ['firstName','required'],
+             // verifyCode needs to be entered correctly
+           ['verifyCode', 'captcha'],
+        ];
+    }
+
+
+     public function attributeLabels()
+    {
+        return [
+
+            'username' => 'Username ',['class'=>'ffff'],
+            'email' => 'E-mail address ',
+            'firstName' => 'First Name',
+            'lastName' => 'Last Name ',
+            'dateB' => 'Date of Birth ',
+            'countryResidence' => 'Country of Residence',
+            'countryCitizenship' => 'Country of Citizenship ',
+            'phone' => 'Phone Number ',
+            'company' => 'Company name ',
+            'adress1' => 'Address ',
+            'adress2' => 'Address (2nd Line) ',
+            'city' => 'City ',
+            'state' => 'State/Province/Region ',
+            'zipCode' => 'Zip/Postal Code ',
+            'emailConfirm' => 'Confirm Email Address',
+            'userPassportNumber' => 'Document number',
+            'verifyCode' => 'Human or robot?',
         ];
     }
 
