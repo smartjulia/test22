@@ -23,9 +23,14 @@ AppAsset::register($this);
 </head>
 <body>
     <?php $this->beginBody() ?>
-    <div class="wrap">
-        <?php
-            NavBar::begin([
+    <div class="header high-header">
+            <a href="http://demo.ebanq.com/" class="logo">
+                <img src="../web/css/bank/images/logo_0.png" alt="Ebanq"/>
+            </a>   
+    </div>
+<div class="wrap">
+      <?php
+              /*NavBar::begin([
                 'brandLabel' => 'My Company',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
@@ -51,7 +56,7 @@ AppAsset::register($this);
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => $menuItems,
             ]);
-            NavBar::end();
+            NavBar::end();*/
         ?>
 
         <div class="container">
@@ -61,14 +66,20 @@ AppAsset::register($this);
         <?= Alert::widget() ?>
         <?= $content ?>
         </div>
-    </div>
+ 
 
-    <footer class="footer">
+    
+	   </div>
+	<!--<footer class="footer">
         <div class="container">
         <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
         <p class="pull-right"><?= Yii::powered() ?></p>
         </div>
-    </footer>
+    </footer>-->
+	<div class="registration-page-footer">
+    <div class="copyrights pull-left">Copyright &copy; Ebanq 2014. All Rights reserved.</div>
+    <div class="site-about pull-right">Ebanq.com - The Online Banking Software Solution.</div>
+    </div>
 
     <?php $this->endBody() ?>
 </body>
