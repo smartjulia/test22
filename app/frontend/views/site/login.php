@@ -41,15 +41,23 @@ $this->params['breadcrumbs'][] = $this->title;
     <!--<div class="row">-->
        <!-- <div class="col-lg-5">-->
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
-                <?= $form->field($model, 'username',['inputOptions' => ['id'=>"edit-name", 'placeholder'=>"Name"]]) ?>
-                <?= $form->field($model, 'password',['inputOptions' => ['id'=>"edit-pass", 'placeholder'=>"Password"]])->passwordInput() ?>
+              
+                <?= $form->field($model, 'username',['inputOptions' => ['id'=>"edit-name", 'placeholder'=>"Name"]])->label('') ?>
+                
+                
+                <?= $form->field($model, 'password',['inputOptions' => ['id'=>"edit-pass", 'placeholder'=>"Password"]])->label('')->passwordInput() ?>
+                
                 <!--  <?= $form->field($model, 'rememberMe')->checkbox() ?> -->
-                <div>
-                     <?= Html::a('Forgot your password?', ['site/request-password-reset']) ?>
-                </div>
-                <div class="form-group">
+               
+               
+                <div id="edit-actions" class="form-actions form-wrapper">
                     <?= Html::submitButton('SING IN', ['class' => 'btn btn-success form-submit', 'name' => 'op']) ?>
                 </div>
+                
+                 <div>
+                     <?= Html::a('Forgot your password?', ['site/request-password-reset']) ?>
+                </div>
+                
             <?php ActiveForm::end(); ?>
         <!--</div>-->
    <!-- </div>-->
