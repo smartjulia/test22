@@ -26,3 +26,21 @@ return [
     ],
     'params' => $params,
 ];
+
+return [
+
+   'components' => [
+   
+    'mail' => [
+      'class' => 'yii\swiftmailer\Mailer',
+      'transport' => [
+        'class' => 'Swift_SmtpTransport',
+        'host' => 'localhost',
+        'username' => 'shustr8@gmail.com',
+        'password' => 'admin',
+        'port' => '465',
+        'encryption' => 'ssl',
+      ],
+    ],
+  ]
+];
