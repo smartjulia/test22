@@ -5,8 +5,6 @@ use common\models\User;
 use app\models\UserProfile;
 use yii\base\Model;
 use Yii;
-//use frontend\models\User;
-
 /**
  * Signup form
  */
@@ -41,12 +39,11 @@ class SignupForm extends Model
      */
     public function rules()
     {
-		return [
+        return [
 
-           ['firstName','required'],
-		   //['dateMonth','required'],
+           [['firstName','lastName','username','email','emailConfirm','verifyCode',],'required'],
              // verifyCode needs to be entered correctly
-           //['verifyCode', 'captcha'],
+           ['verifyCode', 'captcha'],
         ];
     }
 
@@ -59,8 +56,7 @@ class SignupForm extends Model
             'email' => 'E-mail address ',
             'firstName' => 'First Name',
             'lastName' => 'Last Name ',
-            'dateMonth' => 'Date of Birth ',
-			'dateDay' => ' ',
+            'dateB' => 'Date of Birth ',
             'countryResidence' => 'Country of Residence',
             'countryCitizenship' => 'Country of Citizenship ',
             'phone' => 'Phone Number ',
@@ -76,11 +72,6 @@ class SignupForm extends Model
         ];
     }
 
-    /**
-     * Signs user up.
-     *
-     * @return User|null the saved model or null if saving fails
-     */
     public function userInsert()
     {
         $user = new User;

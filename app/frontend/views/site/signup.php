@@ -9,6 +9,7 @@ use frontend\models\Country;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \frontend\models\SignupForm */
 ?>
+<? $this->title = 'User account | Ebanq';?>
 <body class="html not-front not-logged-in no-sidebars page-user page-user-register section-user login-pages" >
     <div class="ie-browser-header">
     You are using Internet Explorer 8. Some features might not work or display properly. It is highly recommended to update the browser or use a different one.        </div>
@@ -17,9 +18,9 @@ use frontend\models\Country;
     </p>
     <div class="content">
         <ul class="big-screen-tabs">
-            <li><a href="login.htm">Log In</a></li>
+            <li><a href="?r=site/login">Log In</a></li>
             <li class="or">or</li>
-            <li class="active"><a href="login-sign-up.htm" class="active">Sign Up</a></li>
+            <li class="active"><a href="?r=site/signup" class="active">Sign Up</a></li>
         </ul>
         <div class="registration-form">
             <?php $form = ActiveForm::begin(['id' => 'user-register-form' , 'options' => ['class' => 'user-info-from-cookie' , 'enctype' => 'multipart/form-data']]); ?>
@@ -111,7 +112,7 @@ use frontend\models\Country;
                         <?= $form->field($model, 'userPassportNumber') -> textInput(['maxlength' => '500','class' => 'text-full form-control form-text required','id' => 'edit-field-user-passport-number-und-0-value',  'size' => '60'])?>
                     </div>
                 </div></div>
-                <div class="field-type-country field-name-field-user-country-of-residence field-widget-options-select form-wrapper" id="edit-field-user-country-of-residence"><div class="form-item form-type-select form-item-field-user-country-of-residence-und">
+            <div class="field-type-country field-name-field-user-country-of-residence field-widget-options-select form-wrapper" id="edit-field-user-country-of-residence"><div class="form-item form-type-select form-item-field-user-country-of-residence-und">
                     <label for="edit-field-user-country-of-residence-und">Country of Residence </label>
 					<?= Html::activeDropDownList($model, 'countryResidence',ArrayHelper::map(Country::find()->all(), 'code'/*'id'*/, 'name')) ?>
 					</div>
@@ -171,7 +172,7 @@ use frontend\models\Country;
                 </div>
             </div>
             <!-- add country-->
-            <div class="field-type-country field-name-field-user-pa-country field-widget-options-select form-wrapper" id="edit-field-user-pa-country">
+       <div class="field-type-country field-name-field-user-pa-country field-widget-options-select form-wrapper" id="edit-field-user-pa-country">
                 <div class="form-item form-type-select form-item-field-user-pa-country-und">
                     <label for="edit-field-user-pa-country-und">Country </label>
 					<?= Html::activeDropDownList($model, 'country',ArrayHelper::map(Country::find()->all(), 'code'/*'id'*/, 'name')) ?>
@@ -185,14 +186,15 @@ use frontend\models\Country;
                 <label for="edit-questions-0-answer">Answer <span class="form-required" title="This field is required.">*</span></label>
                 <input class="form-control form-text required" type="text" id="edit-questions-0-answer" name="questions[0][answer]" value="" size="60" maxlength="128" />
             </div>
+			<div class="captcha">
                 <div class="form-item form-type-textfield form-item-captcha-response">
                 <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                'template' =>"{input}{image}",
+                'template' =>"{input}</div>{image}",
                 ]) ?>
-            </div>
-        </div></div></fieldset>
+			</div>
+        </div></fieldset>
         <div class="form-wrapper form-wrapper" id="edit-legal"><div class="form-item form-type-checkbox form-item-legal-accept">
-            <input type="checkbox" id="edit-legal-accept" name="legal_accept" value="1" class="form-checkbox required" />  <label class="option" for="edit-legal-accept">I Agree to these <a href="/legal" target="_blank">Terms &amp; Conditions</a> <span class="form-required" title="This field is required.">*</span></label>
+            <input type="checkbox" id="edit-legal-accept" name="legal_accept" value="1" class="form-checkbox required" />  <label class="option" for="edit-legal-accept">I Agree to these <a href="?r=site/legal" target="_blank">Terms &amp; Conditions</a> <span class="form-required" title="This field is required.">*</span></label>
         </div>
     </div>
     <div class="final-description">We will contact you prior to full account activation to request any additional information that might be required.</div><div class="form-actions form-wrapper" id="edit-actions">     <?= Html:: submitInput('Sign up', ['class' => 'btn btn-success form-submit', 'name' => 'op']) ?>
