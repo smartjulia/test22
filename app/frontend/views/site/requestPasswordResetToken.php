@@ -19,7 +19,6 @@ $this->title = 'User account | Ebanq';
 <div class="password-recovery-form">
 	<?php $form = ActiveForm::begin(['id' => 'user-pass']); ?>
 <div class="content">        
-
 <div><h1>Forgot your password?</h1><div class="subtitle-text">Enter your email address or username to reset your password. You may need to check your spam folder or unblock no-reply@ebanq.com.</div>
 		<input type="hidden" name="form_build_id" value="form-Z0bJV5GlxxVETqxuvw7jZYAh93ZVhi-1CJnBDqakL1M" />
 		<input type="hidden" name="form_id" value="user_pass" />
@@ -27,10 +26,9 @@ $this->title = 'User account | Ebanq';
 <div class="form-item form-type-textfield form-item-name">
         <?php $form = ActiveForm::begin(['id' => 'request-password-reset-form']); ?>
         <?= $form->field($model, 'email') -> textInput(['placeholder'=>'E-mail or Username', 'class'=>'form-control form-text required', 'id'=>'request-password-reset-form', 'value'=>'', 'size'=>'60', 'maxlength'=>'254'])-> label('')?>
-				
 </div>
 <div class="form-actions form-wrapper" id="edit-actions">
-        <?= Html::submitButton('Submit', ['class' => 'btn btn-success form-submit', 'type'=>'submit', 'id'=>'edit-submit', 'name'=>'op', 'value'=>'Submit']) ?>
+        <?= Html::submitInput('Submit', ['class' => 'btn btn-success form-submit', 'type'=>'submit', 'id'=>'edit-submit', 'name'=>'op', 'value'=>'Submit']) ?>
 </div>
 </div>
 
