@@ -6,13 +6,13 @@ use common\models\LoginForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
+use frontend\models\Country;
 use frontend\models\ContactForm;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-
 /**
  * Site controller
  */
@@ -123,12 +123,17 @@ class SiteController extends Controller
     public function actionSignup()
     {
         $model = new SignupForm();
+		$countries = Country::find()->all();
         if ($model->load(Yii::$app->request->post())&&$model->validate()) {
-            return $this->goHome();
+            $model -> userInsert();
+			return $this->goHome();
         }
 
         return $this->render('signup', [
             'model' => $model,
+			'countries' => $countries,
+			'dateDay' => $model -> dateDay(),
+			'dateMonth' => $model -> dateMonth(),
         ]);
     }
 
@@ -168,4 +173,10 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+	
+	public function actionLegal()
+    {
+        return $this->render('legal');
+    }
+
 }

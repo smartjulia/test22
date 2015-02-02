@@ -17,6 +17,8 @@ AppAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" href="http://demo.ebanq.com/misc/favicon.ico" type="image/vnd.microsoft.icon" />
+	<!--<link rel="shortcut icon" href="../web/css/bank/images/favicon.ico" type="image/vnd.microsoft.icon" />-->
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
