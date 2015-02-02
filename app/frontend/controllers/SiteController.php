@@ -71,7 +71,11 @@ class SiteController extends Controller
     }
 
     public function actionLogin()
+    
     {
+        
+       $this->view->params['hide_footer'] = true; 
+        
         if (!\Yii::$app->user->isGuest) {
             return $this->goHome();
         }

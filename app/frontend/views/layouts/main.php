@@ -30,7 +30,7 @@ AppAsset::register($this);
     </div>
 <div class="wrap">
       <?php
-              /*NavBar::begin([
+            /*  NavBar::begin([
                 'brandLabel' => 'My Company',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
@@ -76,11 +76,17 @@ AppAsset::register($this);
         <p class="pull-right"><?= Yii::powered() ?></p>
         </div>
     </footer>-->
+    
+    <?php if(!isset($this->params['hide_footer'])) : ?>
+    
 	<div class="registration-page-footer">
     <div class="copyrights pull-left">Copyright &copy; Ebanq <?= date('Y') ?>. All Rights reserved.</div>
     <div class="site-about pull-right">Ebanq.com - The Online Banking Software Solution.</div>
     </div>
-
+    
+   <?php endif; ?>
+    
+    
     <?php $this->endBody() ?>
 </body>
 </html>
