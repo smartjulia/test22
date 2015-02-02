@@ -2,7 +2,9 @@
 <?php
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\ArrayHelper;
 use yii\captcha\Captcha;
+use frontend\models\Country;
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \frontend\models\SignupForm */
@@ -40,9 +42,7 @@ use yii\captcha\Captcha;
                             <div class="field-type-text field-name-field-user-first-name field-widget-text-textfield form-wrapper" id="edit-field-user-first-name">
                                 <div id="field-user-first-name-add-more-wrapper">
                                     <div class="form-item form-type-textfield form-item-field-user-first-name-und-0-value">
-                                        <?= $form->field($model, 'firstName', [
-                                        'template' => "{label}\n<span class='form-required' title='This field is required.'>*</span>\n{input}\n{hint}\n{error}"
-                                        ]) -> textInput(['maxlength' => '500','class' => 'text-full form-control form-text required','id' => 'edit-field-user-first-name-und-0-value', 'size' => '60'])-> label('First Name', ['class' => ''])?>
+                                        <?= $form->field($model, 'firstName') -> textInput(['maxlength' => '500','class' => 'text-full form-control form-text required','id' => 'edit-field-user-first-name-und-0-value', 'size' => '60'])-> label('First Name', ['class' => ''])?>
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +73,35 @@ use yii\captcha\Captcha;
                                 </div>
                             </div>
                             <div class="field-type-datetime field-name-field-user-date-of-birth field-widget-date-select form-wrapper" id="edit-field-user-date-of-birth">
-                            <?= $form->field($model, 'dateB') -> dropDownList(['1'=>'1','2'=>'2'])?></div>
+								<div id="field-user-date-of-birth-add-more-wrapper">
+									<fieldset class="form-wrapper">
+									<legend><span class="fieldset-legend">Date of Birth </span></legend>
+									<div class="fieldset-wrapper">
+										<div  class="date-no-float container-inline-date">
+											<div class="form-item form-type-date-select form-item-field-user-date-of-birth-und-0-value">
+												<div id="edit-field-user-date-of-birth-und-0-value"  class="date-padding clearfix">
+													<div class="form-item form-type-select form-item-field-user-date-of-birth-und-0-value-month">
+														<div class="date-month">
+															<?= $form->field($model, 'dateMonth') -> dropDownList($dateMonth,['class'=>'date-clear form-select','id'=>'edit-field-user-date-of-birth-und-0-value-month'])?>
+														</div>
+													</div>
+													<div class="form-item form-type-select form-item-field-user-date-of-birth-und-0-value-day">
+														<div class="date-day">
+															<?= $form->field($model,'dateDay') -> dropDownList($dateDay,['class'=>'date-clear form-select','id'=>'edit-field-user-date-of-birth-und-0-value-day'])?>
+														</div>
+													</div>
+													<div class="form-item form-type-textfield form-item-field-user-date-of-birth-und-0-value-year">
+														<div class="date-year">
+															<?= $form->field($model, 'dateYear') -> textInput(['maxlength' => '128','class' => 'date-clear form-control form-text','id' => 'edit-field-user-date-of-birth-und-0-value-year',  'size' => '7'])?>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</fieldset>
+									</div>
+								</div>
+							</div>
                             <div class="field-type-list-text field-name-field-user-document-type field-widget-options-select form-wrapper" id="edit-field-user-document-type"><div class="form-item form-type-select form-item-field-user-document-type-und">
                                 <label for="edit-field-user-document-type-und">Document type </label>
                                 <select id="edit-field-user-document-type-und" name="field_user_document_type[und]" class="form-select"><option value="_none">- None -</option><option value="0">Passport number</option><option value="1">Driver&#039;s license</option><option value="2">Gov issued photo ID</option></select>
@@ -85,11 +113,12 @@ use yii\captcha\Captcha;
                 </div></div>
                 <div class="field-type-country field-name-field-user-country-of-residence field-widget-options-select form-wrapper" id="edit-field-user-country-of-residence"><div class="form-item form-type-select form-item-field-user-country-of-residence-und">
                     <label for="edit-field-user-country-of-residence-und">Country of Residence </label>
-                    <select id="edit-field-user-country-of-residence-und" name="field_user_country_of_residence[und]" class="form-select"><option value="_none">- None -</option><option value="AF">Afghanistan</option><option value="AX">Aland Islands</option><option value="AL">Albania</option><option value="DZ">Algeria</option><option value="AS">American Samoa</option><option value="AD">Andorra</option><option value="AO">Angola</option><option value="AI">Anguilla</option></select>
-                </div>
+					<?= Html::activeDropDownList($model, 'countryResidence',ArrayHelper::map(Country::find()->all(), 'code'/*'id'*/, 'name')) ?>
+					</div>
             </div><div class="field-type-country field-name-field-user-country-of-citizenshi field-widget-options-select form-wrapper" id="edit-field-user-country-of-citizenshi"><div class="form-item form-type-select form-item-field-user-country-of-citizenshi-und">
             <label for="edit-field-user-country-of-citizenshi-und">Country of Citizenship </label>
-            <select id="edit-field-user-country-of-citizenshi-und" name="field_user_country_of_citizenshi[und]" class="form-select"><option value="_none">- None -</option><option value="AF">Afghanistan</option><option value="AX">Aland Islands</option><option value="AL">Albania</option><option value="DZ">Algeria</option><option value="AS">American Samoa</option><option value="AD">Andorra</option><option value="AO">Angola</option><option value="AI">Anguilla</option><option value="AQ">Antarctica</option><option value="AG">Antigua and Barbuda</option></select>                          </div>
+				<?= Html::activeDropDownList($model, 'countryCitizenship',ArrayHelper::map(Country::find()->all(), 'code'/*'id'*/, 'name')) ?>
+			</div>
         </div>
         <div class="field-type-text field-name-field-user-mobile-phone field-widget-text-textfield form-wrapper" id="edit-field-user-mobile-phone">
             <div id="field-user-mobile-phone-add-more-wrapper">
@@ -145,10 +174,8 @@ use yii\captcha\Captcha;
             <div class="field-type-country field-name-field-user-pa-country field-widget-options-select form-wrapper" id="edit-field-user-pa-country">
                 <div class="form-item form-type-select form-item-field-user-pa-country-und">
                     <label for="edit-field-user-pa-country-und">Country </label>
-                    <select id="edit-field-user-pa-country-und" name="field_user_pa_country[und]" class="form-select">
-                        <option value="_none">- None -</option>
-                        <option value="AF">Afghanistan</option></select>
-                    </div>
+					<?= Html::activeDropDownList($model, 'country',ArrayHelper::map(Country::find()->all(), 'code'/*'id'*/, 'name')) ?>
+                </div>
                 </div></div></fieldset>
                 <fieldset class="form-wrapper" id="edit-security-fieldset"><legend><span class="fieldset-legend">Security section</span></legend><div class="fieldset-wrapper"><div class="form-item form-type-select form-item-questions-0-question">
                 <label for="edit-questions-0-question">Question <span class="form-required" title="This field is required.">*</span></label>
@@ -160,7 +187,7 @@ use yii\captcha\Captcha;
             </div>
                 <div class="form-item form-type-textfield form-item-captcha-response">
                 <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                'template' =>"<span class='form-required' title='This field is required.''>*</span>{input}{image}",
+                'template' =>"{input}{image}",
                 ]) ?>
             </div>
         </div></div></fieldset>
@@ -168,7 +195,7 @@ use yii\captcha\Captcha;
             <input type="checkbox" id="edit-legal-accept" name="legal_accept" value="1" class="form-checkbox required" />  <label class="option" for="edit-legal-accept">I Agree to these <a href="/legal" target="_blank">Terms &amp; Conditions</a> <span class="form-required" title="This field is required.">*</span></label>
         </div>
     </div>
-    <div class="final-description">We will contact you prior to full account activation to request any additional information that might be required.</div><div class="form-actions form-wrapper" id="edit-actions">     <?= Html::submitButton('Sign up', ['class' => 'btn btn-success form-submit', 'name' => 'op']) ?>
+    <div class="final-description">We will contact you prior to full account activation to request any additional information that might be required.</div><div class="form-actions form-wrapper" id="edit-actions">     <?= Html:: submitInput('Sign up', ['class' => 'btn btn-success form-submit', 'name' => 'op']) ?>
 </div>
 </div>
 <?php ActiveForm::end(); ?>

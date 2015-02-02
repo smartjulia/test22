@@ -2,8 +2,10 @@
 namespace frontend\models;
 
 use common\models\User;
+use app\models\UserProfile;
 use yii\base\Model;
 use Yii;
+//use frontend\models\User;
 
 /**
  * Signup form
@@ -28,6 +30,10 @@ class SignupForm extends Model
 	public $emailConfirm;
     public $userPassportNumber;
     public $verifyCode;
+	public $dateDay;
+	public $dateMonth;
+	public $dateYear;
+	public $country;
     
 
     /**
@@ -35,11 +41,12 @@ class SignupForm extends Model
      */
     public function rules()
     {
-        return [
+		return [
 
            ['firstName','required'],
+		   //['dateMonth','required'],
              // verifyCode needs to be entered correctly
-           ['verifyCode', 'captcha'],
+           //['verifyCode', 'captcha'],
         ];
     }
 
@@ -52,7 +59,8 @@ class SignupForm extends Model
             'email' => 'E-mail address ',
             'firstName' => 'First Name',
             'lastName' => 'Last Name ',
-            'dateB' => 'Date of Birth ',
+            'dateMonth' => 'Date of Birth ',
+			'dateDay' => ' ',
             'countryResidence' => 'Country of Residence',
             'countryCitizenship' => 'Country of Citizenship ',
             'phone' => 'Phone Number ',
@@ -73,19 +81,41 @@ class SignupForm extends Model
      *
      * @return User|null the saved model or null if saving fails
      */
-    /*public function signup()
+    public function userInsert()
     {
-        if ($this->validate()) {
-            $user = new User();
-            $user->username = $this->username;
-            $user->email = $this->email;
-            $user->setPassword($this->password);
-            $user->generateAuthKey();
-            if ($user->save()) {
-                return $user;
-            }
-        }
-
-        return null;
-    }*/
+        $user = new User;
+		$form = Yii::$app->request->post()['SignupForm'];
+		
+		$user -> username = $form['username'];
+		$user -> email = $form['email'];
+		//$user ->username = $form['username'];
+		//$user ->username = $form['username'];
+		$user -> insert();
+		
+		$userProfile = new UserProfile;
+		
+		$userProfile -> id = $user->find()->max('id');
+		$userProfile -> firstname = $form['firstName'];
+		$userProfile -> lastname = $form['lastName'];
+		
+		$dateDay = $form['dateDay'];
+		$dateMonth = $form['dateMonth'];
+		$dateYear = $form['dateYear'];
+		$date = date("d-m-Y",strtotime("$dateDay-$dateMonth-$dateYear"));
+		$userProfile -> birthday = $date;
+		
+		//$userProfile -> country_residence = $form['countryResidence'];
+		//$userProfile -> country_citizenship = $form['countryCitizenship'];
+		$userProfile -> phone = $form['phone'];
+		$userProfile -> company = $form['company'];
+		$userProfile -> insert();
+		//$form = Yii::$app->request->post()['SignupForm'];
+		//var_dump($form['countryResidence']);
+    }
+	public function dateDay() {
+	return $this -> dateDay = ['',1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
+	}
+	public function dateMonth() {
+	return $this -> dateDay = [''=>'','Jan'=>'Jan','Feb'=>'Feb','Mar'=>'Mar','Apr'=>'Apr','May'=>'May','Jun'=>'Jun','Jul'=>'Jul','Aug'=>'Aug','Sep'=>'Sep','Oct'=>'Oct','Nov'=>'Nov','Dec'=>'Dec'];
+	}
 }

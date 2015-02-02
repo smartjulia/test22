@@ -119,12 +119,17 @@ class SiteController extends Controller
     public function actionSignup()
     {
         $model = new SignupForm();
+		$countries = Country::find()->all();
         if ($model->load(Yii::$app->request->post())&&$model->validate()) {
-            return $this->goHome();
+            $model -> userInsert();
+			return $this->goHome();
         }
 
         return $this->render('signup', [
             'model' => $model,
+			'countries' => $countries,
+			'dateDay' => $model -> dateDay(),
+			'dateMonth' => $model -> dateMonth(),
         ]);
     }
 
