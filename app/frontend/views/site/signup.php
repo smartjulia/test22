@@ -13,8 +13,8 @@ use frontend\assets\SignUpAsset;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \frontend\models\SignupForm */
 ?>
-<? SignUpAsset::register($this); ?>
-<? $this->title = 'User account | Ebanq';?>
+<?php SignUpAsset::register($this); ?>
+<?php $this->title = 'User account | Ebanq';?>
 <body class="html not-front not-logged-in no-sidebars page-user page-user-register section-user login-pages" >
     <div class="ie-browser-header">
     You are using Internet Explorer 8. Some features might not work or display properly. It is highly recommended to update the browser or use a different one.        </div>
