@@ -5,10 +5,15 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 use yii\captcha\Captcha;
 use frontend\models\Country;
+use frontend\assets\SignUpAsset;
+/* @var $this yii\web\View */
+/* @var $form yii\bootstrap\ActiveForm */
+/* @var $model \frontend\models\SignupForm */
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \frontend\models\SignupForm */
 ?>
+<? SignUpAsset::register($this); ?>
 <? $this->title = 'User account | Ebanq';?>
 <body class="html not-front not-logged-in no-sidebars page-user page-user-register section-user login-pages" >
     <div class="ie-browser-header">
