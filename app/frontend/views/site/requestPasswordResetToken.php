@@ -23,12 +23,10 @@ $this->title = 'User account | Ebanq';
 		<input type="hidden" name="form_build_id" value="form-Z0bJV5GlxxVETqxuvw7jZYAh93ZVhi-1CJnBDqakL1M" />
 		<input type="hidden" name="form_id" value="user_pass" />
 </div>
-<div class="form-item form-type-textfield form-item-name">
-        <?php $form = ActiveForm::begin(['id' => 'request-password-reset-form']); ?>
-        <?= $form->field($model, 'email') -> textInput(['placeholder'=>'E-mail or Username', 'class'=>'form-control form-text required', 'id'=>'request-password-reset-form', 'value'=>'', 'size'=>'60', 'maxlength'=>'254'])-> label('')?>
-</div>
 <div class="form-actions form-wrapper" id="edit-actions">
-        <?= Html::submitInput('Submit', ['class' => 'btn btn-success form-submit', 'type'=>'submit', 'id'=>'edit-submit', 'name'=>'op', 'value'=>'Submit']) ?>
+        <?php $form = ActiveForm::begin(['id' => 'request-password-reset-form']); ?>
+        <?= $form->field($model, 'username') -> textInput(['placeholder'=>'E-mail or Username', 'class'=>'form-control form-text required', 'id'=>'request-password-reset-form', 'value'=>'', 'size'=>'60', 'maxlength'=>'254'])-> label('')?>
+		<?= Html::submitInput('Submit', ['class' => 'btn btn-success form-submit', 'type'=>'submit', 'id'=>'edit-submit', 'name'=>'op', 'value'=>'Submit']) ?>
 </div>
 </div>
 

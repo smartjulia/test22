@@ -13,6 +13,7 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\base\DynamicModel;
 /**
  * Site controller
  */
@@ -146,7 +147,7 @@ class SiteController extends Controller
 
                 return $this->goHome();
             } else {
-                Yii::$app->getSession()->setFlash('error', 'Sorry, we are unable to reset password for email provided.');
+                Yii::$app->getSession()->setFlash('error', 'Sorry, we are unable to reset password for username or email provided.');
             }
         }
 
@@ -154,7 +155,9 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
-
+	
+	
+	
     public function actionResetPassword($token)
     {
         try {

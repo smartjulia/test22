@@ -3,6 +3,10 @@ namespace frontend\models;
 
 use common\models\User;
 use yii\base\Model;
+use yii;
+//use common\models\SignupForm;
+//use yii\validators\EmailValidator;
+//use frontend\models\Username;
 
 /**
  * Password reset request form
@@ -10,23 +14,27 @@ use yii\base\Model;
 class PasswordResetRequestForm extends Model
 {
     public $email;
+	public $username;
+	
 
+	
+	public function rules()
+    {
+			return [
+			['username', 'filter', 'filter' => 'trim'],
+            ['username', 'required', 'message' => 'There is no user with such username or email.']
+			/*['username', 'exist'
+                'targetClass' => '\common\models\User',
+                'filter' => ['status' => User::STATUS_ACTIVE],
+                'message' => 'There is no user with such username.'
+            ],*/
+			];
+			
+	}
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
-        return [
-            ['email', 'filter', 'filter' => 'trim'],
-            ['email', 'required'],
-            ['email', 'email'],
-            ['email', 'exist',
-                'targetClass' => '\common\models\User',
-                'filter' => ['status' => User::STATUS_ACTIVE],
-                'message' => 'There is no user with such email.'
-            ],
-        ];
-    }
+    
 
     /**
      * Sends an email with a link, for resetting the password.
@@ -36,10 +44,23 @@ class PasswordResetRequestForm extends Model
     public function sendEmail()
     {
         /* @var $user User */
-        $user = User::findOne([
-            'status' => User::STATUS_ACTIVE,
-            'email' => $this->email,
-        ]);
+		$pos=strpos('username', '@');
+		if($pos===false){ 
+            $user = User::find()
+			
+			->where(['status' => User::STATUS_ACTIVE])
+			->where(['username'=>$this->username])
+			->orwhere(['email' => $this->username])
+			->one(); 
+			} else {
+			
+			$user = User::find()
+			->where(['status' => User::STATUS_ACTIVE])
+			->where(['username'=>$this->username])
+			->orwhere(['email' => $this->username])
+			->one(); 
+		}
+	
 
         if ($user) {
             if (!User::isPasswordResetTokenValid($user->password_reset_token)) {
